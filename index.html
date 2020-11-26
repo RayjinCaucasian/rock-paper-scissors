@@ -43,7 +43,7 @@
             while(playerSelection(playerPick) > 2 || playerSelection(playerPick) < 0)
           
         playerPick = playerSelection(playerPick)
-        let picks = winnerString(playerPick, computerPick)
+        let picks = picksToString(playerPick, computerPick)
           
         if((computerPick+1) % 3 == playerPick){
             console.log("You Win! " + picks[0] + " beats " + picks[1])
@@ -59,7 +59,7 @@
         }
       }
       
-      function winnerString(playerPick, computerPick){
+      function picksToString(playerPick, computerPick){
         let picks = [playerPick, computerPick];
 
         for(let i = 0; i < 2; i++){
@@ -91,9 +91,9 @@
               console.log(`Wins: ${wins} \n Losses: ${losses} \n Draw: ${draws}`)
           }
           if(wins > losses){
-              console.log("You Win This Game")
+              console.log("You Win This Game!")
           }else{
-              console.log("You Lose This Game")
+              console.log("You Lose This Game!")
           }
       }
       game()
