@@ -3,6 +3,7 @@ let localPlayerScore = 0;
 let remotePlayerScore = 0;
 let localScoreObject = document.querySelector('#local-player-score');
 let remoteScoreObject = document.querySelector('#remote-player-score');
+let roundNotificationObject = document.querySelector('#round-notification');
 
 const moveType = {
   ROCK: 0,
@@ -50,22 +51,22 @@ function convertMove(pick) {
   switch (pick) {
     case "rock":
       return moveType.ROCK;
-      break;
 
     case "paper":
       return moveType.PAPER;
-      break;
 
     case "scissors":
       return moveType.SCISSORS;
-      break;
 
     default:
       alert("invalid selection");
       return -1;
   }
 }
-
+function roundNotification(message) {
+  roundNotificationObject.textContent = message;
+}
+//
 function round(playerSelection) {
   let remotePick = remotePlay();
   let playerPick = convertMove(playerSelection)
@@ -73,15 +74,14 @@ function round(playerSelection) {
   let picks = picksToString(playerPick, remotePick);
 
   if ((remotePick + 1) % 3 == playerPick) {
-    console.log(`You Win! ${picks[0]} beats ${picks[1]}`);
+    roundNotification(`You Win! ${picks[0]} beats ${picks[1]}`);
     localPlayerScore += 1;
   } else if (remotePick == playerPick) {
-    console.log(`Draw! Both picked ${picks[1]}`);
+    roundNotification(`Draw! Both picked ${picks[0]}`);
   } else {
-    console.log(`You Lose! ${picks[1]} beats ${picks[0]}`);
+    roundNotification(`You Lose! ${picks[1]} beats ${picks[0]}`);
     remotePlayerScore += 1;
   }
-  console.log(`Local ${localPlayerScore} : Remote ${remotePlayerScore}`)
   updateScoreObjects();
 
   if(localPlayerScore === 5){
