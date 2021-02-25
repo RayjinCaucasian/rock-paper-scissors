@@ -85,12 +85,12 @@ function round(playerSelection) {
   updateScoreObjects();
 
   if(localPlayerScore === 5){
-    console.log(`You win`);
+    roundNotification(`Congratulations, you won this game!`);
     winAnimation()
     playAgain();
   }
   if(remotePlayerScore === 5){
-    console.log(`You lose`);
+    roundNotification(`Too bad, you lost this game`);
     loseAnimation();
     playAgain();
   }
